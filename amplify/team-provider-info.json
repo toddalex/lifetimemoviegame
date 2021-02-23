@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lifetimemoviegame-dev-192430-authRole",
+      "UnauthRoleArn": "arn:aws:iam::209291497804:role/amplify-lifetimemoviegame-dev-192430-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::209291497804:role/amplify-lifetimemoviegame-dev-192430-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-lifetimemoviegame-dev-192430-deployment",
+      "UnauthRoleName": "amplify-lifetimemoviegame-dev-192430-unauthRole",
+      "StackName": "amplify-lifetimemoviegame-dev-192430",
+      "StackId": "arn:aws:cloudformation:us-west-2:209291497804:stack/amplify-lifetimemoviegame-dev-192430/7d15afa0-7006-11eb-88aa-02a6cd2b3a09",
+      "AmplifyAppId": "d3vxzmvmdf2qvv"
+    },
+    "categories": {
+      "auth": {
+        "lifetimemoviegame0e64b74b": {}
+      }
+    }
+  }
+}
