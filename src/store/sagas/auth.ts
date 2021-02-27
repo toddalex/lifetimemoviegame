@@ -1,13 +1,13 @@
 import { put, call } from 'redux-saga/effects';
 import { Auth } from 'aws-amplify';
+import { signIn, signUp } from '../../utils'
 import * as actions from '../actions';
 import { SignIn, SignUp } from 'src/constants';
 
 export function* signInSaga(payload: SignIn) {
   const { username, password} = payload;
   try {
-    const user = yield call([Auth, 'signIn'], { username, password });
-    const userInfo = { username: user.email, ...user.attributes }
+    const userInfo = yield call(signIn, {username, password});
     yield put (actions.updateUser(userInfo));
   } catch (err) {
     console.log('error signing up..', err)
