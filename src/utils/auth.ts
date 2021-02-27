@@ -9,29 +9,27 @@ import {
   ResendConfirmationCode,
 } from '../models';
 
-export const signIn: SignInAuth = async ({ username, password }, setUser)=> {
-  try {
-    const user = await Auth.signIn(username, password)
-    const userInfo = { username: user.email, ...user.attributes }
-    setUser(userInfo)
-  } catch (err) {
-    console.log('error signing up..', err)
-  }
-};
+// export const signIn: SignInAuth = async ({ username, password }, setUser)=> {
+//   try {
+//     const user = await Auth.signIn(username, password)
+//     const userInfo = { username: user.email, ...user.attributes }
+//     setUser(userInfo);
+//   } catch (err) {
+//     console.log('error signing up..', err)
+//   }
+// };
 
-export const signUp: SignUpAuth =  async ({ username, password }, updateFormType) => {
-  console.log(username)
-  try {
-    console.log(username)
-    await Auth.signUp({
-      username, password
-    })
-    console.log('sign up success!')
-    updateFormType('confirmSignUp')
-  } catch (err) {
-    console.log('error signing up..', err)
-  }
-};
+// export const signUp: SignUpAuth =  async ({ username, password }, updateFormType) => {
+//   try {
+//     await Auth.signUp({
+//       username, password
+//     })
+//     console.log('sign up success!')
+//     updateFormType('confirmSignUp')
+//   } catch (err) {
+//     console.log('error signing up..', err)
+//   }
+// };
 
 export const confirmSignUp: ConfirmSignupAuth = async ({ username, confirmationCode }, updateFormType) => {
   try {

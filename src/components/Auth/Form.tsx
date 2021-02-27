@@ -1,51 +1,69 @@
 import React, { useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import Container from '../UI/Container';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ConfirmSignUp from './ConfirmSignUp';
 import ForgotPassword from './ForgotPassword';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
-import { AuthFormState, SetUser } from '../../models';
+import { AuthFormState, User } from '../../models';
 import {
-  signIn,
-  signUp,
   confirmSignUp,
   forgotPassword,
   forgotPasswordSubmit,
   resendConfirmationCode,
 } from '../../utils';
+import { AuthActionTypes } from 'src/constants';
+import * as actions from '../../store/actions';
 
-const initialFormState: AuthFormState = {
-  username: '', 
-  password: '', 
-  confirmationCode: '',
-};
 
-interface FormProps {
-  setUser: SetUser;
-}
+const mapStateToProps = (state: {auth: AuthFormState}) => ({
+  user: state.auth.user,
+  username: state.auth.username,
+  password: state.auth.password,
+  confirmationCode: state.auth.confirmationCode,
+  formType: state.auth.formType
+});
 
-const Form: React.FC<FormProps> = ({ setUser }) => {
-  const [formType, updateFormType] = useState('signIn');
-  const [formState, updateFormState] = useState(initialFormState);
+const mapDispatchToProps = (dispatch: (func: AuthActionTypes)=> void) => ({
+  updateUser: (payload: User) => dispatch(actions.updateUser(payload)),
+  updateFormType: (formType: string) => dispatch(actions.updateFormType(formType)),
+  updateField: (name: string, value: string) => dispatch(actions.updateField(name, value)),
+  signIn: (name: string, password: string) =>  dispatch(actions.signIn(name, password)),
+  signUp: (username: string, password: string) => dispatch(actions.signUp(username, password))
+});
 
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type AuthFormProps = ConnectedProps<typeof connector>;
+
+const Form: React.FC<AuthFormProps> = ({ 
+  user,
+  username,
+  password,
+  confirmationCode,
+  formType,
+  updateFormType,
+  updateField,
+  signIn,
+  signUp
+}) => {
   const updateForm: React.FormEventHandler = (e: React.FormEvent<Element>) => {
-    
-
     const target = e.target as HTMLInputElement;
-
-    const newFormState = {
-      ...formState, [target.name]: target.value
-    }
-    updateFormState(newFormState);
+    updateField(target.name, target.value);
   };
-
   const renderForm = (): JSX.Element | null => {
+    const form: AuthFormState = {
+      user,
+      username,
+      password,
+      confirmationCode
+    };
     switch(formType) {
       case 'signUp':
         return (
           <SignUp
-            signUp={() => signUp(formState, updateFormType)}
+            signUp={() => signUp(username, password)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             updateFormType = {updateFormType}
           />
@@ -53,15 +71,15 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
       case 'confirmSignUp':
         return (
           <ConfirmSignUp
-            confirmSignUp={() => confirmSignUp(formState, updateFormType)}
+            confirmSignUp={() => confirmSignUp(form, updateFormType)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
-            resendConfirmationCode={() => resendConfirmationCode(formState)}
+            resendConfirmationCode={() => resendConfirmationCode(form)}
           />
         )
       case 'signIn':
         return (
           <SignIn
-            signIn={() => signIn(formState, setUser)}
+            signIn={()=> signIn(username, password)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             updateFormType={updateFormType}
           />
@@ -69,7 +87,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
       case 'forgotPassword':
         return (
           <ForgotPassword
-          forgotPassword={() => forgotPassword(formState, updateFormType)}
+          forgotPassword={() => forgotPassword(form, updateFormType)}
           updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
           updateFormType={updateFormType}
           />
@@ -78,7 +96,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
         return (
           <ForgotPasswordSubmit
             forgotPasswordSubmit={
-              () => forgotPasswordSubmit(formState, updateFormType)}
+              () => forgotPasswordSubmit(form, updateFormType)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
           />
         )
@@ -94,7 +112,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
   );
 };
 
-const styles: {
+export const styles: {
   toggleForm: React.CSSProperties;
   anchor: React.CSSProperties;
 } = {
@@ -111,4 +129,4 @@ const styles: {
   }
 };
 
-export { styles, Form as default };
+export default connector(Form);
