@@ -2,7 +2,14 @@ import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import { styles } from './Form';
-import { UpdateFormState, ConfirmSignupAuth, ResendConfirmationCode } from '../../models';
+import { 
+  UpdateFormState, 
+  ConfirmSignupAuth, 
+  ResendConfirmationCode,
+  InputName,
+  InputLabel,
+  ButtonType
+} from '../../models';
 
 interface ConfirmSignUpProps {
   updateFormState: UpdateFormState;
@@ -18,12 +25,11 @@ const ConfirmSignUp: React.FC<ConfirmSignUpProps> = ({
   return (
     <>
       <Input
-        name='confirmationCode'
-        label='Confirmation Code'
-        type='confirmationCode'
+        name={InputName.ConfirmationCode}
+        label={InputLabel.ConfirmationCode}
         updateFormState={updateFormState}
       />
-      <Button onClick={confirmSignUp} title="Confirm Sign Up" />
+      <Button onClick={confirmSignUp} title={ButtonType.ConfirmSignUp} />
       <p style={styles.toggleForm}>
         <span
           style={styles.anchor}

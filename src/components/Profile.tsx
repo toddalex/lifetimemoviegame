@@ -3,7 +3,7 @@ import Button from './UI/Button';
 import { Auth, Hub } from 'aws-amplify';
 import Container from './UI/Container';
 import Form from './Auth/Form';
-import { ProfileStateType } from '../models';
+import { ProfileStateType, ButtonType } from '../models';
 
 const Profile: React.FC = () => {
   useEffect(() => {
@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
       <Container>
         <h1>Profile</h1>
         <h3>Email: {user.email}</h3>
-        <Button title="Sign Out" onClick={signOut} />
+        <Button title={ButtonType.SignOut} onClick={signOut} />
       </Container>
     ) : 
   <Form setUser={setUser} />;

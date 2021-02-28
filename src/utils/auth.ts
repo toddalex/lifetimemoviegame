@@ -1,5 +1,5 @@
 import { Auth } from 'aws-amplify';
-
+import { authErrorHandler } from './authErrorHandler';
 import { 
   SignInAuth, 
   SignUpAuth,
@@ -16,7 +16,8 @@ export const signIn: SignInAuth = async ({ username, password }, setUser)=> {
     setUser(userInfo)
   } catch (err) {
     console.log('error signing up..', err)
-  }
+    authErrorHandler(err);
+  };
 };
 
 export const signUp: SignUpAuth =  async ({ username, password }, updateFormType) => {
@@ -29,8 +30,9 @@ export const signUp: SignUpAuth =  async ({ username, password }, updateFormType
     console.log('sign up success!')
     updateFormType('confirmSignUp')
   } catch (err) {
-    console.log('error signing up..', err)
-  }
+    console.log('error signing up..', err);
+    authErrorHandler(err);
+  };
 };
 
 export const confirmSignUp: ConfirmSignupAuth = async ({ username, confirmationCode }, updateFormType) => {
@@ -38,8 +40,9 @@ export const confirmSignUp: ConfirmSignupAuth = async ({ username, confirmationC
     await Auth.confirmSignUp(username, confirmationCode)
     updateFormType('signIn')
   } catch (err) {
-    console.log('error signing up..', err)
-  }
+    console.log('error signing up..', err);
+    authErrorHandler(err);
+  };
 };
 
 export const forgotPassword: ForgotPasswordAuth = async ({ username }, updateFormType) => {
@@ -47,8 +50,9 @@ export const forgotPassword: ForgotPasswordAuth = async ({ username }, updateFor
     await Auth.forgotPassword(username)
     updateFormType('forgotPasswordSubmit')
   } catch (err) {
-    console.log('error submitting email to reset password...', err)
-  }
+    console.log('error submitting email to reset password...', err);
+    authErrorHandler(err);
+  };
 };
 
 export const forgotPasswordSubmit: ForgotPasswordSubmitAuth = async ({ username, confirmationCode, password }, updateFormType) => {
@@ -56,14 +60,16 @@ try {
   await Auth.forgotPasswordSubmit(username, confirmationCode, password)
   updateFormType('signIn')
   } catch (err) {
-    console.log('error updating password... :', err)
-  }
+    console.log('error updating password... :', err);
+    authErrorHandler(err);
+  };
 };
 
 export const resendConfirmationCode: ResendConfirmationCode = async({ username }) => {
   try{
     await Auth.resendSignUp(username)
   } catch (err) {
-    console.log('error resending confirmation code...', err)
-  }
+    console.log('error resending confirmation code...', err);
+    authErrorHandler(err);
+  };
 };
