@@ -7,15 +7,13 @@ import {
   ForgotPasswordAuth,
   ForgotPasswordSubmitAuth,
   ResendConfirmationCode,
+  User,
 } from '../models';
 
 type SignIn = ({ username, password }: {
   username: string;
   password: string;
-}) => Promise<{
-  username: string;
-  password: string;
-}>
+}) => Promise<User | Error>
 
 export const signIn: SignIn = async ({ username, password }) => {
   try {
@@ -38,10 +36,9 @@ export const signUp: SignUpAuth =  async ({ username, password }) => {
   }
 };
 
-export const confirmSignUp: ConfirmSignupAuth = async ({ username, confirmationCode }, updateFormType) => {
+export const confirmSignUp: ConfirmSignupAuth = async ({ username, confirmationCode }) => {
   try {
     await Auth.confirmSignUp(username, confirmationCode)
-    updateFormType('signIn')
   } catch (err) {
     console.log('error signing up..', err)
   }

@@ -41,9 +41,8 @@ export type SignUpAuth = ({ username, password }: {
 
 export type ConfirmSignupAuth = ({ username, confirmationCode }: {
   username: string;
-  password: string;
   confirmationCode: string;
-}, updateFormType: UpdateFormType) => Promise<void>;
+}) => void;
 
 export type ForgotPasswordAuth = ({ username }: {
   username: string;

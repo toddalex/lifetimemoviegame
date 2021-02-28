@@ -4,5 +4,6 @@ export {
   updateField,
   toggleButton,
   signIn,
-  signUp
+  signUp,
+  confirmSignUp,
 } from './auth';

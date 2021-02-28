@@ -8,7 +8,6 @@ import ForgotPassword from './ForgotPassword';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
 import { AuthFormState, User } from '../../models';
 import {
-  confirmSignUp,
   forgotPassword,
   forgotPasswordSubmit,
   resendConfirmationCode,
@@ -30,7 +29,8 @@ const mapDispatchToProps = (dispatch: (func: AuthActionTypes)=> void) => ({
   updateFormType: (formType: string) => dispatch(actions.updateFormType(formType)),
   updateField: (name: string, value: string) => dispatch(actions.updateField(name, value)),
   signIn: (name: string, password: string) =>  dispatch(actions.signIn(name, password)),
-  signUp: (username: string, password: string) => dispatch(actions.signUp(username, password))
+  signUp: (username: string, password: string) => dispatch(actions.signUp(username, password)),
+  confirmSignUp: (username: string, confirmationCode: string) => dispatch(actions.signUp(username, confirmationCode))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,7 +46,8 @@ const Form: React.FC<AuthFormProps> = ({
   updateFormType,
   updateField,
   signIn,
-  signUp
+  signUp,
+  confirmSignUp
 }) => {
   const updateForm: React.FormEventHandler = (e: React.FormEvent<Element>) => {
     const target = e.target as HTMLInputElement;
@@ -71,7 +72,7 @@ const Form: React.FC<AuthFormProps> = ({
       case 'confirmSignUp':
         return (
           <ConfirmSignUp
-            confirmSignUp={() => confirmSignUp(form, updateFormType)}
+            confirmSignUp={() => confirmSignUp(username, confirmationCode)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             resendConfirmationCode={() => resendConfirmationCode(form)}
           />

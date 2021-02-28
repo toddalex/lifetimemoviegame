@@ -44,3 +44,11 @@ export const signUp = (username: string, password: string): actionTypes.AuthActi
     password,
   };
 };
+
+export const confirmSignUp = (username: string, confirmationCode: string): actionTypes.AuthActionTypes => {
+  return {
+    type: actionTypes.CONFIRM_SIGN_UP,
+    username,
+    confirmationCode,
+  };
+};

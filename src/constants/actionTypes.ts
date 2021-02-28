@@ -7,6 +7,7 @@ export const TOGGLE_BUTTON = 'TOGGLE_BUTTON';
 
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
+export const CONFIRM_SIGN_UP = 'CONFIRM_SIGN_UP';
 
 export interface UpdateUser {
   type: typeof UPDATE_USER
@@ -40,9 +41,16 @@ export interface SignUp {
   password: string
 }
 
+export interface ConfirmSignUp {
+  type: typeof CONFIRM_SIGN_UP
+  username: string
+  confirmationCode: string
+}
+
 export type AuthActionTypes = 
 UpdateUser |
 UpdateFormType |
 UpdateField |
 SignIn |
-SignUp
+SignUp |
+ConfirmSignUp
