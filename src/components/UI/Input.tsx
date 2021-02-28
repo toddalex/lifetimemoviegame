@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import { UpdateFormState } from '../../models';
+import { UpdateFormState, ValidationState } from '../../models';
+import { AuthActionTypes, IsValidIdentifier } from '../../store/actionTypes';
+import * as actions from '../../store/actions';
 
 interface InputProps {
   name: string;
@@ -9,77 +12,52 @@ interface InputProps {
   updateFormState: UpdateFormState;
 };
 
-interface InputState {
-  error: boolean;
-  helperText: null | string;
-};
+const mapStateToProps = (state: {auth: ValidationState}) => ({
+  username: state.auth.username,
+  password: state.auth.password,
+  confirmationCode: state.auth.confirmationCode,
+});
 
-const initialState: InputState = {
-  error: false,
-  helperText: null
-};
+const mapDispatchToProps = (dispatch: (func: AuthActionTypes) => void) => ({
+  updateValidation: (
+    name: IsValidIdentifier,
+    isValid: boolean, 
+    helperText: string
+    ) => dispatch(actions.updateValidation(name, isValid, helperText))
+});
 
-const Input: React.FC<InputProps> = ({
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type StateProps = InputProps & ConnectedProps<typeof connector>;
+
+const Input: React.FC<StateProps> = ({
   name,
   label,
   type,
   updateFormState,
+  username,
+  password,
+  confirmationCode,
+  updateValidation
 }) => {
-  const [state, setState] = useState(initialState);
 
   const validateEmail = (email: string): void => {
     const emailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-    if (email === null || email === '' || !email.match(emailFormat)) {
-      const newstate: InputState = {
-        ...state, 
-          error: true,
-          helperText: 'please enter valid email'
-      };
-      setState(newstate);
-    } else {
-      const newstate: InputState = {
-        ...state, 
-          error: false,
-          helperText: null
-      };
-      setState(newstate);
-    };
+    !email.match(emailFormat) 
+      ? updateValidation('username', true, 'please enter a valid email')
+      : updateValidation('username', false, '');
   };
 
   const validateConfirmationCode = (confirmationCode: string): void => {
-    if (confirmationCode.length < 6 || confirmationCode.length > 6) {
-      const newstate: InputState = {
-        ...state, 
-          error: true,
-          helperText: 'please enter a 6-digit value'
-      };
-      setState(newstate);
-    } else {
-      const newstate: InputState = {
-        ...state, 
-          error: false,
-          helperText: null
-      };
-      setState(newstate);
-    };
+    confirmationCode.length !== 6
+      ? updateValidation('confirmationCode', true, 'please enter a 6-digit value')
+      : updateValidation('confirmationCode', false, '');
   };
 
   const validatePassword = (password: string): void => {
-    if (password.length < 8) {
-      const newstate: InputState = {
-        ...state, 
-          error: true,
-          helperText: 'minimum 8 characters long'
-      };
-      setState(newstate);
-    } else {
-      const newstate: InputState = {
-        ...state, 
-          error: false,
-          helperText: null
-      };
-      setState(newstate);
-    };
+    password.length < 8 
+      ? updateValidation('password', true, 'minimum 8 characters')
+      : updateValidation('password', false, '');
   };
 
   const renderInput = (): JSX.Element => {
@@ -90,8 +68,8 @@ const Input: React.FC<InputProps> = ({
             name={name}
             label={label}
             onChange={e => {e.persist();updateFormState(e);validateEmail(e.target.value);}}
-            error={state.error}
-            helperText={state.helperText}
+            error={username.isValid}
+            helperText={username.helperText}
           />
         )
       case 'confirmationCode':
@@ -100,8 +78,8 @@ const Input: React.FC<InputProps> = ({
             name={name}
             label={label}
             onChange={e => {e.persist();updateFormState(e);validateConfirmationCode(e.target.value);}}
-            error={state.error}
-            helperText={state.helperText}
+            error={confirmationCode.isValid}
+            helperText={confirmationCode.helperText}
           />
         )
       case 'password':
@@ -111,8 +89,8 @@ const Input: React.FC<InputProps> = ({
             label={label}
             type={type}
             onChange={e => {e.persist();updateFormState(e);validatePassword(e.target.value);}}
-            error={state.error}
-            helperText={state.helperText}
+            error={password.isValid}
+            helperText={password.helperText}
           />
         )
       default: 
@@ -134,4 +112,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default connector(Input);

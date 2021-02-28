@@ -30,10 +30,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
   const [formState, updateFormState] = useState(initialFormState);
 
   const updateForm: React.FormEventHandler = (e: React.FormEvent<Element>) => {
-    
-
     const target = e.target as HTMLInputElement;
-
     const newFormState = {
       ...formState, [target.name]: target.value
     }

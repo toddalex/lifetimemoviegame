@@ -6,6 +6,23 @@ export interface AuthFormState {
   confirmationCode: string;
 };
 
+export interface ValidationState {
+  username: {
+    isValid: boolean;
+    helperText: string;
+  };
+  password: {
+    isValid: boolean;
+    helperText: string;
+  };
+  confirmationCode: {
+    isValid: boolean;
+    helperText: string;
+  };
+  isDisabled: boolean;
+  isLoading: boolean;
+}
+
 export interface User {
   email: string;
 }
@@ -19,6 +36,12 @@ export type SetUser = Dispatch<React.SetStateAction<ProfileStateType>>
 export type UpdateFormState = { (value: React.ChangeEvent<HTMLInputElement>): void; (arg0: React.FormEvent): void };
 
 export type OnChangeAuth = ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+
+export interface AuthError {
+  code: string
+  message: string
+  name: string
+}
 
 export type SignInAuth = ({ username, password }: {
   username: string;
