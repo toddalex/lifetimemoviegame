@@ -19,7 +19,6 @@ export interface ValidationState {
     isValid: boolean;
     helperText: string;
   };
-  isDisabled: boolean;
   isLoading: boolean;
 }
 
@@ -41,7 +40,7 @@ export interface AuthError {
   code: string
   message: string
   name: string
-}
+};
 
 export type SignInAuth = ({ username, password }: {
   username: string;

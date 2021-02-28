@@ -3,18 +3,17 @@ import { ValidationState } from '../../models'
 
 const initialState: ValidationState = {
   username: {
-    isValid: false,
+    isValid: true,
     helperText: '',
   },
   password: {
-    isValid: false,
+    isValid: true,
     helperText: '',
   },
   confirmationCode: {
-    isValid: false,
+    isValid: true,
     helperText: '',
   },
-  isDisabled: true,
   isLoading: true,
 };
 

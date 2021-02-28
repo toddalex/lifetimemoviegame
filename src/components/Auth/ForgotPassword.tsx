@@ -2,7 +2,14 @@ import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import { styles } from './Form';
-import { UpdateFormState, ForgotPasswordAuth, UpdateFormType } from '../../models';
+import { 
+  UpdateFormState, 
+  ForgotPasswordAuth, 
+  UpdateFormType,
+  InputName,
+  InputLabel,
+  ButtonType, 
+} from '../../models';
 
 interface ForgotPasswordProps {
   updateFormState: UpdateFormState;
@@ -18,11 +25,11 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({
   return (
     <>
       <Input
-        name='username'
-        label='Email'
+        name={InputName.Username}
+        label={InputLabel.Email}
         updateFormState={updateFormState}
       />
-      <Button onClick={forgotPassword} title="Reset password" />
+      <Button onClick={forgotPassword} title={ButtonType.ForgotPassword} />
       <p style={styles.toggleForm}>
         <span
           style={styles.anchor}

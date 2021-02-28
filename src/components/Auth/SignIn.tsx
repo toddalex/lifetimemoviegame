@@ -2,7 +2,14 @@ import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import { styles } from './Form';
-import { UpdateFormState, SignInAuth, UpdateFormType } from '../../models';
+import { 
+  UpdateFormState, 
+  SignInAuth, 
+  UpdateFormType,
+  InputName,
+  InputLabel,
+  ButtonType
+} from '../../models';
 
 interface SignInProps {
   updateFormState: UpdateFormState;
@@ -18,17 +25,17 @@ const SignIn:React.FC<SignInProps> = ({
   return (
     <>
       <Input
-        name='username'
-        label='Email'
+        name={InputName.Username}
+        label={InputLabel.Email}
         updateFormState={updateFormState}
       />
       <Input
-        name='password'
-        label='Password'
+        name={InputName.Password}
+        label={InputLabel.Password}
         type='password'
         updateFormState={updateFormState}
       />
-      <Button onClick={signIn} title="Sign In" />
+      <Button onClick={signIn} title={ButtonType.SignIn} />
       <p style={styles.toggleForm}>
         Need an account? <span
           style={styles.anchor}

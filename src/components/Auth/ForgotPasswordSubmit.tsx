@@ -1,7 +1,13 @@
 import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
-import { UpdateFormState, ForgotPasswordSubmitAuth } from '../../models';
+import { 
+  UpdateFormState, 
+  ForgotPasswordSubmitAuth,
+  InputName,
+  InputLabel,
+  ButtonType
+ } from '../../models';
 
 interface ForgotPasswordSubmitProps {
   updateFormState: UpdateFormState;
@@ -15,17 +21,17 @@ const ForgotPasswordSubmit: React.FC<ForgotPasswordSubmitProps> =({
   return (
     <>
       <Input
-        name='confirmationCode'
-        label='Confirmation code'
+        name={InputName.ConfirmationCode}
+        label={InputLabel.ConfirmationCode}
         updateFormState={updateFormState}
       />
       <Input
-        name='password'
-        label='New password'
+        name={InputName.Password}
+        label={InputLabel.Password}
         type='password'
         updateFormState={updateFormState}
       />
-      <Button onClick={forgotPasswordSubmit} title="Save new password" />
+      <Button onClick={forgotPasswordSubmit} title={ButtonType.ForgotPasswordSubmit} />
     </>
   );
 };
