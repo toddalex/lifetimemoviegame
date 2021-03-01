@@ -13,8 +13,7 @@ const initialState: ValidationState = {
   confirmationCode: {
     isValid: true,
     helperText: '',
-  },
-  isLoading: true,
+  }
 };
 
 const updateObject = (oldObject: ValidationState, updatedProperties: {}) => {

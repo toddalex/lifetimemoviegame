@@ -19,12 +19,17 @@ export interface ValidationState {
     isValid: boolean;
     helperText: string;
   };
-  isLoading: boolean;
-}
+};
+
+export interface AuthError {
+  code: string
+  message: string
+  name: string
+};
 
 export interface User {
   email: string;
-}
+};
 
 export type ProfileStateType = User | null;
 
@@ -35,12 +40,6 @@ export type SetUser = Dispatch<React.SetStateAction<ProfileStateType>>
 export type UpdateFormState = { (value: React.ChangeEvent<HTMLInputElement>): void; (arg0: React.FormEvent): void };
 
 export type OnChangeAuth = ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
-
-export interface AuthError {
-  code: string
-  message: string
-  name: string
-};
 
 export type SignInAuth = ({ username, password }: {
   username: string;

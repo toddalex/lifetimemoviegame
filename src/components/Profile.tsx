@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Button from './UI/Button';
 import { Auth, Hub } from 'aws-amplify';
-import Container from './UI/Container';
+
 import Form from './Auth/Form';
+import Button from './UI/Button';
+import Container from './UI/Container';
+
 import { ProfileStateType, ButtonType } from '../models';
 
 const Profile: React.FC = () => {

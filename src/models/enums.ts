@@ -10,6 +10,10 @@ export enum InputLabel {
   ConfirmationCode = 'Confirmation Code'
 };
 
+export enum FormType {
+  
+}
+
 export enum ButtonType {
   SignIn = 'Sign In',
   SignUp = 'Sign Up',
