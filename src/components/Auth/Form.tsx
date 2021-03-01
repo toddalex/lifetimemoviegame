@@ -5,7 +5,11 @@ import SignUp from './SignUp';
 import ConfirmSignUp from './ConfirmSignUp';
 import ForgotPassword from './ForgotPassword';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
-import { AuthFormState, SetUser } from '../../models';
+import { 
+  AuthFormState, 
+  SetUser,
+  FormType,
+ } from '../../models';
 import {
   signIn,
   signUp,
@@ -26,7 +30,7 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ setUser }) => {
-  const [formType, updateFormType] = useState('signIn');
+  const [formType, updateFormType] = useState(FormType.SignIn);
   const [formState, updateFormState] = useState(initialFormState);
 
   const updateForm: React.FormEventHandler = (e: React.FormEvent<Element>) => {
@@ -39,7 +43,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
 
   const renderForm = (): JSX.Element | null => {
     switch(formType) {
-      case 'signUp':
+      case FormType.SignUp:
         return (
           <SignUp
             signUp={() => signUp(formState, updateFormType)}
@@ -47,7 +51,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             updateFormType = {updateFormType}
           />
         )
-      case 'confirmSignUp':
+      case FormType.ConfirmSignUp:
         return (
           <ConfirmSignUp
             confirmSignUp={() => confirmSignUp(formState, updateFormType)}
@@ -55,7 +59,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             resendConfirmationCode={() => resendConfirmationCode(formState)}
           />
         )
-      case 'signIn':
+      case FormType.SignIn:
         return (
           <SignIn
             signIn={() => signIn(formState, setUser)}
@@ -63,7 +67,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             updateFormType={updateFormType}
           />
         )
-      case 'forgotPassword':
+      case FormType.ForgotPassword:
         return (
           <ForgotPassword
           forgotPassword={() => forgotPassword(formState, updateFormType)}
@@ -71,7 +75,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
           updateFormType={updateFormType}
           />
         )
-      case 'forgotPasswordSubmit':
+      case FormType.ForgotPasswordSubmit:
         return (
           <ForgotPasswordSubmit
             forgotPasswordSubmit={

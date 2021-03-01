@@ -1,4 +1,5 @@
 import { SetStateAction, Dispatch } from "react";
+import { FormType } from "./enums";
 
 export interface AuthFormState {
   username: string;
@@ -33,7 +34,7 @@ export interface User {
 
 export type ProfileStateType = User | null;
 
-export type UpdateFormType = Dispatch<SetStateAction<string>>;
+export type UpdateFormType = Dispatch<SetStateAction<FormType>>;
 
 export type SetUser = Dispatch<React.SetStateAction<ProfileStateType>>
 
