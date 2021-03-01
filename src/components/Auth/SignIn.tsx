@@ -1,4 +1,5 @@
 import React from 'react';
+import OAuth from '../Auth/OAuth';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import { styles } from './Form';
@@ -49,6 +50,7 @@ const SignIn:React.FC<SignInProps> = ({
           onClick={() => updateFormType(FormType.ForgotPassword)}
         >Reset Password</span>
       </p>
+      <OAuth />
     </>
   );
 };

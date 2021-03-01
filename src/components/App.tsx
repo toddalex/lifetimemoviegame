@@ -3,7 +3,7 @@ import Profile from './Profile';
 
 const App: React.FC = () => {
   return (
-    <div className="App" style={styles}>
+    <div className="App" >
       <Profile />
     </div>
   );
@@ -11,8 +11,3 @@ const App: React.FC = () => {
 
 export default App;
 
-const styles: React.CSSProperties = {
-  margin: '0 auto',
-  padding: '1rem',
-  width: '35%'
-};

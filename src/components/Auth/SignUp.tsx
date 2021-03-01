@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
+import OAuth from '../Auth/OAuth';
 import { styles } from './Form';
 import { 
   UpdateFormState, 
@@ -43,6 +44,7 @@ const SignUp: React.FC<SignUpProps> = ({
           onClick={() => updateFormType(FormType.SignIn)}
         >Sign In</span>
       </p>
+      <OAuth />
     </>
   );
 };

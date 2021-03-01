@@ -63,5 +63,5 @@ type ButtonProps = Props & ConnectedProps<typeof connector>;
 export default connector(AuthButton);
 
 const styles: React.CSSProperties = {
-  marginTop: '25px',
+  margin: '25px 0 15px 0',
 };

@@ -101,14 +101,13 @@ const styles: {
 } = {
   toggleForm: {
     fontSize: '11px',
-    padding: '0px 20px',
-    marginBottom: 0,
+    margin: '3px 0',
     textAlign: 'center',
     color: 'rgba(0, 0, 0, 0.6)'
   },
   anchor: {
     color: '#006bfc',
-    cursor: 'pointer'
+    cursor: 'pointer',
   }
 };
 
