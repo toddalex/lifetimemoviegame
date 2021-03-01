@@ -8,7 +8,8 @@ import {
   UpdateFormType,
   InputName,
   InputLabel,
-  ButtonType, 
+  ButtonType,
+  FormType, 
 } from '../../models';
 
 interface ForgotPasswordProps {
@@ -33,7 +34,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({
       <p style={styles.toggleForm}>
         <span
           style={styles.anchor}
-          onClick={() => updateFormType('signIn')}
+          onClick={() => updateFormType(FormType.SignIn)}
         >Go Back</span>
       </p>
     </>

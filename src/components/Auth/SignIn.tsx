@@ -8,7 +8,8 @@ import {
   UpdateFormType,
   InputName,
   InputLabel,
-  ButtonType
+  ButtonType,
+  FormType
 } from '../../models';
 
 interface SignInProps {
@@ -39,13 +40,13 @@ const SignIn:React.FC<SignInProps> = ({
       <p style={styles.toggleForm}>
         Need an account? <span
           style={styles.anchor}
-          onClick={() => updateFormType('signUp')}
+          onClick={() => updateFormType(FormType.SignUp)}
         >Sign Up</span>
       </p>
       <p style={{ ...styles.toggleForm, }}>
         Forget your password? <span
           style={styles.anchor}
-          onClick={() => updateFormType('forgotPassword')}
+          onClick={() => updateFormType(FormType.ForgotPassword)}
         >Reset Password</span>
       </p>
     </>

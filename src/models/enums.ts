@@ -1,13 +1,22 @@
 export enum InputName {
   Username = 'username',
   Password = 'password',
-  ConfirmationCode = 'confirmationCode'
+  ConfirmationCode = 'confirmationCode',
 };
 
 export enum InputLabel {
   Email = 'Email',
   Password = 'Password',
-  ConfirmationCode = 'Confirmation Code'
+  ConfirmationCode = 'Confirmation Code',
+};
+
+export enum FormType {
+  SignIn = 'signIn',
+  SignUp = 'signUp',
+  ConfirmSignUp = 'confirmSignUp',
+  ForgotPassword = 'forgotPassword',
+  ForgotPasswordSubmit = 'forgotPasswordSubmit',
+  Loading = 'loading',
 };
 
 export enum ButtonType {
@@ -19,9 +28,16 @@ export enum ButtonType {
   SignOut = 'Sign Out',
 };
 
-export enum ErrorMessage {
+export enum ErrorCode {
   IncorrectPassword = 'NotAuthorizedException',
   NoUser = 'UserNotFoundException',
   InvalidCode = 'CodeMismatchException',
-  UsernameExists = 'UsernameExistsException'
+  UsernameExists = 'UsernameExistsException',
 };
+
+export enum ErrorMessage {
+  IncorrectPassword = 'Incorrect password.',
+  NoUser = 'User not found.',
+  InvalidCode = 'Invalid code.',
+  UsernameExists = 'User already exists.',
+}

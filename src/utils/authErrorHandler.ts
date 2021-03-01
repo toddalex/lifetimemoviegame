@@ -1,36 +1,37 @@
 import store from '../store';
 import * as actions from '../store/actions';
 import { 
-  AuthError, 
+  AuthError,
+  ErrorCode, 
   ErrorMessage,
   InputName
  } from '../models';
 
 export const authErrorHandler = (error: AuthError): void => {
   
-  const resetInput = (input: InputName) => {
+  const resetInput = (input: InputName, message: ErrorMessage) => {
     setTimeout(
-      () => store.dispatch(actions.updateValidation(input, true, '')), 
-      3000
+      () => store.dispatch(actions.updateValidation(input, true, message)), 
+      1000
     );
   };
 
   switch (error.code) {
-    case ErrorMessage.IncorrectPassword : 
-      store.dispatch(actions.updateValidation(InputName.Password, false, 'Incorrect password.'));
-      resetInput(InputName.Password);
+    case ErrorCode.IncorrectPassword : 
+      store.dispatch(actions.updateValidation(InputName.Password, false, ErrorMessage.IncorrectPassword));
+      resetInput(InputName.Password, ErrorMessage.IncorrectPassword);
       break;
-    case ErrorMessage.UsernameExists : 
-      store.dispatch(actions.updateValidation(InputName.Username, false, 'User already exists.'));
-      resetInput(InputName.Username);
+    case ErrorCode.UsernameExists : 
+      store.dispatch(actions.updateValidation(InputName.Username, false, ErrorMessage.UsernameExists));
+      resetInput(InputName.Username, ErrorMessage.UsernameExists);
       break;
-    case ErrorMessage.NoUser :
-      store.dispatch(actions.updateValidation(InputName.Username, false, 'User not found.'));
-      resetInput(InputName.Username);
+    case ErrorCode.NoUser :
+      store.dispatch(actions.updateValidation(InputName.Username, false, ErrorMessage.NoUser));
+      resetInput(InputName.Username, ErrorMessage.NoUser);
       break;
-    case ErrorMessage.InvalidCode :
-      store.dispatch(actions.updateValidation(InputName.ConfirmationCode, false, 'Invalid code.'));
-      resetInput(InputName.ConfirmationCode);
+    case ErrorCode.InvalidCode :
+      store.dispatch(actions.updateValidation(InputName.ConfirmationCode, false, ErrorMessage.InvalidCode));
+      resetInput(InputName.ConfirmationCode, ErrorMessage.InvalidCode);
       break;
   };
 };
