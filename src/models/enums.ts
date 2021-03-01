@@ -17,7 +17,7 @@ export enum FormType {
   ForgotPassword = 'forgotPassword',
   ForgotPasswordSubmit = 'forgotPasswordSubmit',
   Loading = 'loading',
-}
+};
 
 export enum ButtonType {
   SignIn = 'Sign In',
@@ -28,9 +28,16 @@ export enum ButtonType {
   SignOut = 'Sign Out',
 };
 
-export enum ErrorMessage {
+export enum ErrorCode {
   IncorrectPassword = 'NotAuthorizedException',
   NoUser = 'UserNotFoundException',
   InvalidCode = 'CodeMismatchException',
   UsernameExists = 'UsernameExistsException',
 };
+
+export enum ErrorMessage {
+  IncorrectPassword = 'Incorrect password.',
+  NoUser = 'User not found.',
+  InvalidCode = 'Invalid code.',
+  UsernameExists = 'User already exists.',
+}

@@ -13,7 +13,8 @@ const initialState: ValidationState = {
   confirmationCode: {
     isValid: true,
     helperText: '',
-  }
+  },
+  isLoading: false,
 };
 
 const updateObject = (oldObject: ValidationState, updatedProperties: {}) => {
@@ -23,7 +24,7 @@ const updateObject = (oldObject: ValidationState, updatedProperties: {}) => {
   };
 };
 
-const updateValidation = (state = initialState, action: actionTypes.AuthActionTypes) => {
+const updateValidation = (state = initialState, action: actionTypes.UpdateValidation) => {
   const updatedFormElement = {
     isValid: action.isValid,
     helperText: action.helperText
@@ -34,9 +35,17 @@ const updateValidation = (state = initialState, action: actionTypes.AuthActionTy
   return updatedState;
 };
 
+const setLoading = (state = initialState, action: actionTypes.SetLoading) => {
+  const updatedState = updateObject(state, {
+    isLoading: !state.isLoading
+  });
+  return updatedState;
+};
+
 const authReducer = (state = initialState, action: actionTypes.AuthActionTypes): ValidationState => {
   switch (action.type) {
     case actionTypes.UPDATE_VALIDATION: return updateValidation(state, action)
+    case actionTypes.SET_LOADING: return setLoading(state, action)
     default: return state
   };
 };

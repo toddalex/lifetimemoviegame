@@ -20,6 +20,7 @@ export interface ValidationState {
     isValid: boolean;
     helperText: string;
   };
+  isLoading: boolean;
 };
 
 export interface AuthError {

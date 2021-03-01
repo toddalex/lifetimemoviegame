@@ -12,3 +12,9 @@ export const updateValidation = (
     helperText,
   };
 };
+
+export const setLoading = (): actionTypes.AuthActionTypes => {
+  return {
+    type: actionTypes.SET_LOADING
+  };
+};

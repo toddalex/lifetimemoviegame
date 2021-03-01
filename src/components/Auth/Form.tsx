@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Container from '../UI/Container';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ConfirmSignUp from './ConfirmSignUp';
 import ForgotPassword from './ForgotPassword';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
+import Container from '../UI/Container';
 import { 
   AuthFormState, 
   SetUser,

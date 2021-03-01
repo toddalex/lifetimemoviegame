@@ -13,7 +13,7 @@ const AuthButton: React.FC<ButtonProps> = ({
   title,
   username,
   password,
-  confirmationCode
+  confirmationCode,
 }) => {
   const [button, setButton] = useState(true);
 
