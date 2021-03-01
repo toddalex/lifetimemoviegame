@@ -1,6 +1,6 @@
 {
   "auth": {
-    "lifetimemoviegame0e64b74b": {
+    "lifetimemoviegame84a8a261": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

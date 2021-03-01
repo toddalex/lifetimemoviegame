@@ -62,6 +62,7 @@ const Input: React.FC<InputProps> = ({
       case InputName.ConfirmationCode :
         return(
           <TextField
+            style={styles}
             name={name}
             label={label}
             onChange={e => {e.persist();updateFormState(e);validateConfirmationCode(e.target.value);}}

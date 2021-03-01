@@ -7,6 +7,12 @@ import Container from './UI/Container';
 
 import { ProfileStateType, ButtonType } from '../models';
 
+/* const checkUser = () => {
+  const user = await Auth.currentAuthenticatedUser();
+  console.log('user', user)
+}
+*/
+
 const Profile: React.FC = () => {
   useEffect(() => {
     checkUser()

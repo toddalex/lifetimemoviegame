@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "lifetimemoviegame0e64b74b_identitypool_0e64b74b",
+    "identityPoolName": "lifetimemoviegame84a8a261_identitypool_84a8a261",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "lifeti0e64b74b",
-    "userPoolName": "lifetimemoviegame0e64b74b_userpool_0e64b74b",
+    "resourceNameTruncated": "lifeti84a8a261",
+    "userPoolName": "lifetimemoviegame84a8a261_userpool_84a8a261",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "lifeti0e64b74b_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "lifeti84a8a261_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "0e64b74b",
-    "resourceName": "lifetimemoviegame0e64b74b",
+    "sharedId": "84a8a261",
+    "resourceName": "lifetimemoviegame84a8a261",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,10 +45,18 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "defaultSocial",
+    "hostedUI": true,
     "usernameAttributes": [
         "email"
     ],
+    "hostedUIDomainName": "lifetimemoviegame84a8a261-84a8a261",
+    "authProvidersUserPool": [
+        "Facebook",
+        "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,

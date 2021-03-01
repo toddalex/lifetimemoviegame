@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 import ProgressBar from './ProgressBar';
-import { ValidationState } from '../../models';
+
 
 const Container: React.FC<ReactNode> = ({ children }) => (
   <div style={styles.container}>
@@ -21,6 +20,7 @@ const styles: {
     flexDirection: 'column',
     marginTop: 150,
     paddingTop: 50,
+    maxWidth: '350px',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '5px',
