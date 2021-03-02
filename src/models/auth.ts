@@ -41,8 +41,6 @@ export type SetUser = Dispatch<React.SetStateAction<ProfileStateType>>
 
 export type UpdateFormState = { (value: React.ChangeEvent<HTMLInputElement>): void; (arg0: React.FormEvent): void };
 
-export type OnChangeAuth = ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
-
 export type SignInAuth = ({ username, password }: {
   username: string;
   password: string;

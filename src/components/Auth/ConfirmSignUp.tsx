@@ -15,6 +15,7 @@ interface ConfirmSignUpProps {
   updateFormState: UpdateFormState;
   confirmSignUp: ConfirmSignupAuth;
   resendConfirmationCode: ResendConfirmationCode;
+  clearValidation: () => void;
 }
 
 const ConfirmSignUp: React.FC<ConfirmSignUpProps> = ({

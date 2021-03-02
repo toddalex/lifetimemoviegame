@@ -13,6 +13,12 @@ export const updateValidation = (
   };
 };
 
+export const clearvalidation = (): actionTypes.ClearValidation => {
+  return {
+    type: actionTypes.CLEAR_VALIDATION
+  };
+};
+
 export const setLoading = (): actionTypes.AuthActionTypes => {
   return {
     type: actionTypes.SET_LOADING

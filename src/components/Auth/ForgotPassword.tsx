@@ -11,11 +11,13 @@ import {
   ButtonType,
   FormType, 
 } from '../../models';
+import { clearvalidation } from 'src/store/actions';
 
 interface ForgotPasswordProps {
   updateFormState: UpdateFormState;
   forgotPassword: ForgotPasswordAuth;
   updateFormType: UpdateFormType;
+  clearValidation: () => void;
 };
 
 const ForgotPassword: React.FC<ForgotPasswordProps> = ({
@@ -34,7 +36,10 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({
       <p style={styles.toggleForm}>
         <span
           style={styles.anchor}
-          onClick={() => updateFormType(FormType.SignIn)}
+          onClick={() => {
+            updateFormType(FormType.SignIn);
+            clearvalidation();
+          }}
         >Go Back</span>
       </p>
     </>
