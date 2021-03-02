@@ -12,7 +12,7 @@ export const authErrorHandler = (error: AuthError): void => {
   const resetInput = (input: InputName, message: ErrorMessage) => {
     setTimeout(
       () => store.dispatch(actions.updateValidation(input, true, message)), 
-      1000
+      1500
     );
   };
 
@@ -33,5 +33,12 @@ export const authErrorHandler = (error: AuthError): void => {
       store.dispatch(actions.updateValidation(InputName.ConfirmationCode, false, ErrorMessage.InvalidCode));
       resetInput(InputName.ConfirmationCode, ErrorMessage.InvalidCode);
       break;
+    case ErrorCode.EmptyPassword :
+      store.dispatch(actions.updateValidation(InputName.Password, false, ErrorMessage.EmptyPassword));
+      resetInput(InputName.Password, ErrorMessage.EmptyPassword);
+      break;
+    default:
+      store.dispatch(actions.updateValidation(InputName.Username, false, ErrorMessage.EmptyUsername));
+      resetInput(InputName.Username, ErrorMessage.EmptyUsername);
   };
 };

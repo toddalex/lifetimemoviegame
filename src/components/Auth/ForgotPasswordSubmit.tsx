@@ -12,11 +12,12 @@ import {
 interface ForgotPasswordSubmitProps {
   updateFormState: UpdateFormState;
   forgotPasswordSubmit: ForgotPasswordSubmitAuth;
+  clearValidation: () => void;
 };
 
 const ForgotPasswordSubmit: React.FC<ForgotPasswordSubmitProps> =({ 
   updateFormState, 
-  forgotPasswordSubmit
+  forgotPasswordSubmit,
 }) => {
   return (
     <>

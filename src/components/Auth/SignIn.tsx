@@ -1,5 +1,5 @@
 import React from 'react';
-import OAuth from '../Auth/OAuth';
+import OAuth from './OAuth';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import { styles } from './Form';
@@ -12,17 +12,20 @@ import {
   ButtonType,
   FormType
 } from '../../models';
+import { clearvalidation } from 'src/store/actions';
 
 interface SignInProps {
   updateFormState: UpdateFormState;
   signIn: SignInAuth;
   updateFormType: UpdateFormType;
+  clearValidation: () => void;
 };
 
 const SignIn:React.FC<SignInProps> = ({  
   updateFormState,
   signIn,
-  updateFormType, 
+  updateFormType,
+  clearValidation, 
 }) => {
   return (
     <>
@@ -41,13 +44,19 @@ const SignIn:React.FC<SignInProps> = ({
       <p style={styles.toggleForm}>
         Need an account? <span
           style={styles.anchor}
-          onClick={() => updateFormType(FormType.SignUp)}
+          onClick={() => {
+            updateFormType(FormType.SignUp); 
+            clearValidation();
+          }}
         >Sign Up</span>
       </p>
       <p style={{ ...styles.toggleForm, }}>
         Forget your password? <span
           style={styles.anchor}
-          onClick={() => updateFormType(FormType.ForgotPassword)}
+          onClick={() => {
+            updateFormType(FormType.ForgotPassword);
+            clearvalidation();
+          }}
         >Reset Password</span>
       </p>
       <OAuth />

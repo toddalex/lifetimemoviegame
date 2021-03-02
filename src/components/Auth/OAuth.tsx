@@ -2,7 +2,7 @@ import React from 'react';
 import Auth , { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 
-const OAuthContainer: React.FC = () => {
+const OAuth: React.FC = () => {
   return(
     <div style={styles.oauthForm}>
       <GoogleLoginButton
@@ -21,7 +21,7 @@ const OAuthContainer: React.FC = () => {
   )
 }
 
-export default OAuthContainer;
+export default OAuth;
 
 const styles: {
   oauthForm: React.CSSProperties;

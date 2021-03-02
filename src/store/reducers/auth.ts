@@ -34,6 +34,26 @@ const updateValidation = (state = initialState, action: actionTypes.UpdateValida
   });
   return updatedState;
 };
+ 
+const clearValidation = (state = initialState, action: actionTypes.ClearValidation) => {
+  const defaultState: ValidationState = {
+    username: {
+      isValid: true,
+      helperText: '',
+    },
+    password: {
+      isValid: true,
+      helperText: '',
+    },
+    confirmationCode: {
+      isValid: true,
+      helperText: '',
+    },
+    isLoading: false,
+  };
+  const updatedState = updateObject(state, defaultState);
+  return updatedState;
+};
 
 const setLoading = (state = initialState, action: actionTypes.SetLoading) => {
   const updatedState = updateObject(state, {
@@ -46,6 +66,7 @@ const authReducer = (state = initialState, action: actionTypes.AuthActionTypes):
   switch (action.type) {
     case actionTypes.UPDATE_VALIDATION: return updateValidation(state, action)
     case actionTypes.SET_LOADING: return setLoading(state, action)
+    case actionTypes.CLEAR_VALIDATION: return clearValidation(state, action)
     default: return state
   };
 };

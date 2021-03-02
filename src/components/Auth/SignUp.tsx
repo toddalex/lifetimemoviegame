@@ -17,12 +17,14 @@ interface SignUpProps {
   updateFormState: UpdateFormState;
   signUp: SignUpAuth;
   updateFormType: UpdateFormType;
+  clearValidation: () => void;
 };
 
 const SignUp: React.FC<SignUpProps> = ({ 
   updateFormState, 
   signUp,
-  updateFormType 
+  updateFormType,
+  clearValidation 
 }) => {
   return (
     <>
@@ -41,7 +43,10 @@ const SignUp: React.FC<SignUpProps> = ({
       <p style={styles.toggleForm}>
         Already have an account? <span
           style={styles.anchor}
-          onClick={() => updateFormType(FormType.SignIn)}
+          onClick={() => {
+            updateFormType(FormType.SignIn);
+            clearValidation();
+          }}
         >Sign In</span>
       </p>
       <OAuth />

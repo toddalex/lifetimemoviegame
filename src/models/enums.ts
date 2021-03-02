@@ -33,6 +33,8 @@ export enum ErrorCode {
   NoUser = 'UserNotFoundException',
   InvalidCode = 'CodeMismatchException',
   UsernameExists = 'UsernameExistsException',
+  EmptyUsername = 'EmptyUsername',
+  EmptyPassword = 'InvalidParameterException'
 };
 
 export enum ErrorMessage {
@@ -40,4 +42,6 @@ export enum ErrorMessage {
   NoUser = 'User not found.',
   InvalidCode = 'Invalid code.',
   UsernameExists = 'User already exists.',
+  EmptyUsername = 'Please enter an email.',
+  EmptyPassword = 'Please enter a password.'
 }

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ConfirmSignUp from './ConfirmSignUp';
 import ForgotPassword from './ForgotPassword';
 import ForgotPasswordSubmit from './ForgotPasswordSubmit';
 import Container from '../UI/Container';
+import * as actions from '../../store/actions';
+import { AuthActionTypes } from 'src/store/actionTypes';
 import { 
   AuthFormState, 
   SetUser,
@@ -25,11 +28,11 @@ const initialFormState: AuthFormState = {
   confirmationCode: '',
 };
 
-interface FormProps {
+interface Props {
   setUser: SetUser;
-}
+};
 
-const Form: React.FC<FormProps> = ({ setUser }) => {
+const Form: React.FC<FormProps> = ({ setUser, clearvalidation }) => {
   const [formType, updateFormType] = useState(FormType.SignIn);
   const [formState, updateFormState] = useState(initialFormState);
 
@@ -41,6 +44,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
     updateFormState(newFormState);
   };
 
+
   const renderForm = (): JSX.Element | null => {
     switch(formType) {
       case FormType.SignUp:
@@ -49,6 +53,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             signUp={() => signUp(formState, updateFormType)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             updateFormType = {updateFormType}
+            clearValidation = {clearvalidation}
           />
         )
       case FormType.ConfirmSignUp:
@@ -57,6 +62,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             confirmSignUp={() => confirmSignUp(formState, updateFormType)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             resendConfirmationCode={() => resendConfirmationCode(formState)}
+            clearValidation = {clearvalidation}
           />
         )
       case FormType.SignIn:
@@ -65,6 +71,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             signIn={() => signIn(formState, setUser)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
             updateFormType={updateFormType}
+            clearValidation = {clearvalidation}
           />
         )
       case FormType.ForgotPassword:
@@ -73,6 +80,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
           forgotPassword={() => forgotPassword(formState, updateFormType)}
           updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
           updateFormType={updateFormType}
+          clearValidation = {clearvalidation}
           />
         )
       case FormType.ForgotPasswordSubmit:
@@ -81,6 +89,7 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
             forgotPasswordSubmit={
               () => forgotPasswordSubmit(formState, updateFormType)}
             updateFormState={(e: React.FormEvent<Element>) => updateForm(e)}
+            clearValidation = {clearvalidation}
           />
         )
       default:
@@ -95,7 +104,17 @@ const Form: React.FC<FormProps> = ({ setUser }) => {
   );
 };
 
-const styles: {
+const mapDispatchToProps = (dispatch: (func: AuthActionTypes) => void) => ({
+  clearvalidation: () => dispatch(actions.clearvalidation())
+});
+
+const connector = connect(null, mapDispatchToProps);
+
+type FormProps = Props & ConnectedProps<typeof connector>;
+
+export default connector(Form);
+
+export const styles: {
   toggleForm: React.CSSProperties;
   anchor: React.CSSProperties;
 } = {
@@ -110,5 +129,3 @@ const styles: {
     cursor: 'pointer',
   }
 };
-
-export { styles, Form as default };
