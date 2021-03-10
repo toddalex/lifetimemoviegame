@@ -49,11 +49,11 @@ const AuthButton: React.FC<ButtonProps> = ({
 };
 
 const mapStateToProps = (state: {
-  auth: ValidationState
+  validation: ValidationState
 }) => ({
-  username: state.auth.username,
-  password: state.auth.password,
-  confirmationCode: state.auth.confirmationCode,
+  username: state.validation.username,
+  password: state.validation.password,
+  confirmationCode: state.validation.confirmationCode,
 });
 
 const connector = connect(mapStateToProps);
