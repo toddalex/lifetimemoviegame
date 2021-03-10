@@ -99,7 +99,7 @@ const Form: React.FC<FormProps> = ({ setUser, clearvalidation }) => {
 
   return (
     <Container>
-      {renderForm()}
+      {(renderForm())}
     </Container>
   );
 };

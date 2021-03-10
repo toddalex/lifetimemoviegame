@@ -16,9 +16,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ isLoading }) => {
 };
 
 const mapStateToProps = (state: {
-  auth: ValidationState
+  validation: ValidationState
 }) => ({
-  isLoading: state.auth.isLoading
+  isLoading: state.validation.isLoading
 });
 
 const connector = connect(mapStateToProps);

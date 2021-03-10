@@ -62,7 +62,7 @@ const setLoading = (state = initialState, action: actionTypes.SetLoading) => {
   return updatedState;
 };
 
-const authReducer = (state = initialState, action: actionTypes.AuthActionTypes): ValidationState => {
+const validationReducer = (state = initialState, action: actionTypes.AuthActionTypes): ValidationState => {
   switch (action.type) {
     case actionTypes.UPDATE_VALIDATION: return updateValidation(state, action)
     case actionTypes.SET_LOADING: return setLoading(state, action)
@@ -71,4 +71,4 @@ const authReducer = (state = initialState, action: actionTypes.AuthActionTypes):
   };
 };
 
-export default authReducer;
+export default validationReducer;

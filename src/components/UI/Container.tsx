@@ -18,7 +18,7 @@ const styles: {
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 150,
+    marginTop: 100,
     paddingTop: 50,
     maxWidth: '350px',
     justifyContent: 'center',

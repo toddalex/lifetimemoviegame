@@ -16,9 +16,10 @@ export const signIn: SignInAuth = async ({ username, password }, setUser)=> {
   store.dispatch(actions.setLoading());
   try {
     const user = await Auth.signIn(username, password);
+    console.log(user);
     store.dispatch(actions.setLoading());
     const userInfo = { username: user.email, ...user.attributes }
-    setUser(userInfo)
+    setUser(userInfo);
   } catch (err) {
     console.log('error signing up..', err)
     authErrorHandler(err);
